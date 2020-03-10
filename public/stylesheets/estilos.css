@@ -1,0 +1,110 @@
+.btn-color{
+  background: rgb(255, 55, 131);
+  color:rgb(36, 36, 36);
+}
+.btn-color1{
+  background: rgb(36, 36, 36) ;
+  color:rgb(255, 55, 131);
+}
+header {
+  background:white;
+}
+body{
+  background: rgb(36,36,36);
+}
+.menu {
+  background: white;
+}
+
+.logo-img {
+  filter: grayscale(100%);
+}
+.log {
+  height:200px;
+  width:350px;
+}
+a:hover {
+  text-decoration: none;
+}
+.nav-item:hover {
+  text-decoration: none;
+}
+
+.btn-color:hover {
+  color: rgb(144, 144, 144);
+  background: white;
+  border: 1px rgb(71, 255, 246)solid;
+  border-radius: 5px;
+}
+.btn-color1:hover {
+  color:rgb(255, 55, 131);
+  background: white;
+  border: 1px rgb(144, 144, 144) solid;
+  border-radius: 5px;
+}
+
+.linktext{
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color:black;
+}
+
+.linktext:hover{
+  color: rgb(0, 247, 255);
+  border-top: 2px rgb(144, 144, 144) solid;
+  border-bottom: 2px rgb(144, 144, 144) solid;
+  border-radius: 0px;
+  transition:300ms;
+}
+
+.search-form {
+  height: calc(1em + 0.75rem + 2px)
+}
+
+.search-icon {
+  background:none;
+  border: none;
+}
+
+
+.index-footers1, .index-footers2 {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 18px;
+  height: 100px;
+  width:200px;
+}
+
+.index-footers1 {
+  background:rgb(0, 255, 255) ;
+  color: rgb(36, 36, 36);
+}
+
+.bluetext {
+  color: rgb(0, 255, 255);
+  font-weight: bold;
+}
+.pinktext {
+  color:rgb(255, 55, 131);
+  font-weight: bold;
+
+}
+.blacktext {
+  color: black;
+  font-weight: bold;
+}
+.yellowtext {
+  color: rgb(255, 240, 30);
+  font-weight: bold;
+
+}
+.index-footers2 {
+  background:rgb(36, 36, 36) ;
+  color: white;
+}
+
+footer {
+  background: white;
+}
+
+.redestext, .mediatext {
+  font-size: 12px;
+}

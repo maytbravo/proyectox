@@ -1,0 +1,48 @@
+<div class="content bg-white">
+<div class="container mt-2">
+    <div class="row bg-white" style="height: 700px;">
+        <div class="col-3 m-auto mediatext">
+            <h5 class="pinktext">Nuestra historia</h5>
+            <br>
+            <p>May Store es un emprendimiento que nace como un proyecto experimental de indumentaria.
+                Mezcla el diseño gráfico con el diseño de indumentaria. Utiliza conceptos base de ambos ámbitos
+                para crear piezas únicas. Nos enfocamos en las tendencias modernas de la juventud.
+                Aportamos en el mercado local nuevas opciones ante la monotonía de estilos edgy, dark y pastel goth.
+            </p>
+            <br>
+            <h5 class="pinktext">Nuestro local</h5>
+            <br>
+            <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q=chacabuco%20974&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>Google Maps Generator by <a href="https://www.embedgooglemap.net">embedgooglemap.net</a></div><style>.mapouter{position:relative;text-align:right;height:200px;width:300px;}.gmap_canvas {overflow:hidden;background:none!important;height:200px;width:300px;}</style></div>
+        </div>
+        <div class="col-7 m-auto border-left">
+            <h5 class="blacktext">Contáctanos</h5>
+            <br>
+            <form action="/nosotros" method="POST">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input class="form-control" id="nombre" type="text" placeholder="Marcelo">
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido</label>
+                <input class="form-control" id="apellido" type="text" placeholder="Cono">
+            </div>
+            <div class="form-group">
+                <label for="mail">Mail</label>
+                <input class="form-control" id="mail" type="email" placeholder="ejemplo@gmail.com">
+            </div>
+            <div class="form-group">
+                <label for="comentario">Comentario</label>
+                <textarea class="form-control" cols="3" rows="3" placeholder="Déjanos tu mensaje"></textarea>
+            </div>
+            <button type="submit" class="btn btn-color1">Enviar</button>
+
+            {{#if status}}
+                <h5 class="text-success text-center">{{message}}</h5>
+                {{else}}
+                <h5 class="text-danger text-center">{{message}}</h5>
+                {{/if}}
+            </form>
+        </div>
+    </div>
+</div>
+</div>

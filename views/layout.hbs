@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/estilos.css">   
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/5e01cc74c2.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </head>
+  <body>
+  <header>
+  <div class="container  menu mr-3 mb-2 d-fixed m-auto">
+      <div class="row align-items-center" style="height:80px;">
+          <div class="col-xl-1 col-md-1 col-sm-12 mx-auto">
+          <img src="\images\logo1.jpg" class="logo-img" style="height:70px;width:70px;">
+          </div>
+          <div class="col-xl-6 col-md-6 col-sm-12" style="height:auto;">
+
+              <a href="/">
+                  <span class="linktext p-2 pr-4 pl-4">Inicio</span>
+              </a>      
+
+              <a href="/nosotros">
+                  <span class="linktext p-2 pr-4 pl-4">Nosotros</span>
+              </a>
+
+              <a href="/store">
+                  <span class="linktext p-2 pr-4 pl-4">Tienda</span>
+              </a>
+
+              <span class="linktext p-2 pr-4 pl-4 btn" data-toggle="modal" data-target=".bd-example-modal-sm">
+                  Login
+              </span>
+
+              <span class="linktext p-2 pr-4 pl-4 btn" data-toggle="modal" data-target="#exampleModalCenter">
+                  Registro
+              </span>
+
+              <a href="/control">
+                  <span class="linktext p-2 pr-4 pl-4 d-none">Control</span>
+              </a>
+            </div>
+          
+          <div class="col-xl-4 col-md-4 col-sm-12 d-flex">
+            <i class="fas fa-ghost p-2 pr-3"></i>
+            <i class="fas fa-user-secret p-2 pr-3 d-none"></i>
+            <i class="fas fa-user p-2 pr-3 d-none"></i>
+            <i class="fas fa-shopping-cart p-2 pr-3"></i>
+
+             <nav class="search-bar">
+            <form class="form-inline">
+             
+              <input class="form-control search-form" type="search" placeholder="Search" aria-label="Search">
+               <div class="input-group-prepend">
+                <span class="input-group-text search-icon" id="search-icon"><i class="fas fa-search"></i></span>
+              </div>
+            </form>
+          </nav>
+          </div>
+
+         
+        </div>
+      </div>
+    </div> 
+
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="container-float">
+          <div class="row log m-auto align-items-center" style="height:300px;">
+              <div class="col-9">
+
+              <div class="form-group">
+              <label for="Email">Email</label>
+              <input type="email" name="email"class="form-control" id="email" aria-describedby="emailHelp">
+              </div>
+
+              <div class="form-group">
+              <label for="Contraseña">Contraseña</label>
+              <input type="password" name="password" class="form-control" id="password">
+              </div>
+              <br>
+              <input type="checkbox" class="checkbox"><small> Mostrar contraseña</small>
+              </div>
+              
+              <span name="msglogin" id="msglogin"></span>
+
+          </div>
+          </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-color1 btn-block" data-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-color btn-block">Entrar</button>
+            </div>
+          </div>
+      </div>
+    </div>
+            
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Registro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <div class="container-float">
+            <div class="row log align-items-center" style="height:750px; width:500px;">
+            <div class="col-10 m-auto">
+
+            <div class="form-group">
+            <label for="namex">Nombre</label>
+            <input type="text" class="form-control" id="namex">
+            </div>
+    
+            <div class="form-group">
+            <label for="surx">Apellido</label>
+            <input type="text" class="form-control" id="surx">
+            </div>
+
+            <div class="form-group">
+            <label for="sexx">Sexo</label>
+            <br>
+            <input type="radio"> Femenino</input>
+            <br>
+            <input type="radio"> Masculino</input>
+            </div>
+            
+            <div class="form-group">
+            <label for="nacx">Fecha de nacimiento</label>
+            <input type="date" class="form-control" id="nacx">
+            </div>
+            
+            <div class="form-group">
+            <label for="telx">Telefono</label>
+            <input type="number" class="form-control" id="telx">
+            </div>
+
+            <div class="form-group">
+            <label for="mailx">Email</label>
+            <input type="email" class="form-control" id="mailx">
+            </div>
+
+            <div class="form-group">
+            <label for="userx">Usuario</label>
+            <input type="text" class="form-control" id="userx">
+            </div>
+
+            <div class="form-group">
+            <label for="passx">Contraseña</label>
+            <input type="password" class="form-control" id="passxHelp">
+            </div>
+          </div>
+          </div>
+        </div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-color1 btn-block" data-dismiss="modal">Cancelar</button>
+  <button type="button" class="btn btn-color btn-block">Registrarse</button>
+</div>
+</div>
+</div>
+</div>
+    </div>
+    </header>
+    {{{body}}}
+  </body>
+</html>
