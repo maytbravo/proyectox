@@ -69,7 +69,7 @@
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Login</h5>
+        <h5 class="modal-title" id="exampleModalCenterTitle" class="blacktext">Login</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -81,15 +81,15 @@
 
               <div class="form-group">
               <label for="Email">Email</label>
-              <input type="email" name="email"class="form-control" id="email" aria-describedby="emailHelp">
+              <input type="email" name="email"class="form-control" id="mailx" aria-describedby="emailHelp">
               </div>
 
               <div class="form-group">
               <label for="Contraseña">Contraseña</label>
-              <input type="password" name="password" class="form-control" id="password">
+              <input type="password" name="password" class="form-control" id="passx">
               </div>
               <br>
-              <input type="checkbox" class="checkbox"><small> Mostrar contraseña</small>
+              <button type="button" class="btn" id="viewpass">Mostrar contraseña</button>
               </div>
               
               <span name="msglogin" id="msglogin"></span>
@@ -109,24 +109,26 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Registro</h5>
+          <h5 class="modal-title blacktext" id="exampleModalCenterTitle">Registro</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
         <div class="container-float">
-            <div class="row log align-items-center" style="height:750px; width:500px;">
+            <div class="row log align-items-center" style="height:auto; width:500px;">
             <div class="col-10 m-auto">
 
             <div class="form-group">
             <label for="namex">Nombre</label>
             <input type="text" class="form-control" id="namex">
+            <span class="mediatext" id="namStatus"></span>
             </div>
     
             <div class="form-group">
             <label for="surx">Apellido</label>
             <input type="text" class="form-control" id="surx">
+            <span class="mediatext" id="surStatus"></span>
             </div>
 
             <div class="form-group">
@@ -135,38 +137,44 @@
             <input type="radio"> Femenino</input>
             <br>
             <input type="radio"> Masculino</input>
+            <span class="mediatext" id="sexStatus"></span>
             </div>
             
             <div class="form-group">
             <label for="nacx">Fecha de nacimiento</label>
             <input type="date" class="form-control" id="nacx">
+            <span class="mediatext" id="dateStatus"></span>
             </div>
             
             <div class="form-group">
             <label for="telx">Telefono</label>
             <input type="number" class="form-control" id="telx">
+            <span class="mediatext" id="telStatus"></span>
             </div>
 
             <div class="form-group">
             <label for="mailx">Email</label>
             <input type="email" class="form-control" id="mailx">
+            <span class="mediatext" id="mailStatus"></span>
             </div>
 
             <div class="form-group">
             <label for="userx">Usuario</label>
             <input type="text" class="form-control" id="userx">
+            <span class="mediatext" id="userStatus"></span>
             </div>
 
             <div class="form-group">
             <label for="passx">Contraseña</label>
             <input type="password" class="form-control" id="passxHelp">
+            <span class="mediatext" id="passStatus"></span>
             </div>
           </div>
           </div>
         </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-color1 btn-block" data-dismiss="modal">Cancelar</button>
-  <button type="button" class="btn btn-color btn-block">Registrarse</button>
+  <button type="button" id="registrar" class="btn btn-color btn-block">Registrarse</button>
 </div>
 </div>
 </div>
@@ -174,5 +182,84 @@
     </div>
     </header>
     {{{body}}}
+    <script>
+      addEventListener('load',f1);
+
+function f1() {
+    document.getElementById('registrar').addEventListener('click', comprobarUser);
+    document.getElementById('registrar').addEventListener('click', comprobarSur);
+    document.getElementById('registrar').addEventListener('click', comprobarTel);
+    document.getElementById('registrar').addEventListener('click', comprobarEmail);
+    document.getElementById('viewpass').addEventListener('click', viewPass);
+    showPass = false;
+}
+
+function viewPass() {
+    if (showPass) {
+        showPass = false;
+        document.getElementById('passx').type = "password";
+        document.getElementById('viewpass').innerHTML = "Mostrar contraseña";
+    } else {
+        showPass = true;
+        document.getElementById('passx').type = "text";
+        document.getElementById('viewpass').innerHTML = "Ocultar contraseña";
+    }
+}
+
+function comprobarUser() {
+    let id = 'namex';
+    let status = 'namStatus'
+    let value = document.getElementById(id).value;
+    if (value.length >= 3) {
+        document.getElementById(id).style.background = "#F3FFF7";
+        document.getElementById(status).innerHTML = "";
+    } else {
+        document.getElementById(id).style.background = "#FFF3F3";
+        document.getElementById(status).innerHTML = "El campo es demasiado corto";
+    }
+}
+
+function comprobarSur() {
+    let id = 'surx';
+    let status = 'surStatus'
+    let value = document.getElementById(id).value;
+    if (value.length >= 3) {
+        document.getElementById(id).style.background = "#F3FFF7";
+        document.getElementById(status).innerHTML = "";
+    } else {
+        document.getElementById(id).style.background = "#FFF3F3";
+        document.getElementById(status).innerHTML = "El campo es demasiado corto";
+    }
+}
+
+function comprobarTel() {
+    let id = 'telx';
+    let status = 'telStatus'
+    let value = document.getElementById(id).value;
+    var regex = new RegExp("^[0-9]*$");
+    if (regex.test(value) && value.length >= 8) {
+        document.getElementById(id).style.background = "#F3FFF7";
+        document.getElementById(status).innerHTML = "";
+    } else {
+        document.getElementById(id).style.background = "#FFF3F3";
+        document.getElementById(status).innerHTML = "El campo no contiene un teléfono válido";
+    }
+}
+
+function comprobarEmail() {
+    let id = 'mailx';
+    let status = 'mailStatus';
+    let value = document.getElementById(id).value;
+    var regex = new RegExp("^[a-zA-Z0-9_.-]+@[a-zA-Z]+[.]{1}[a-zA-Z]+$");
+    if (regex.test(value)) {
+        document.getElementById(id).style.background = "#F3FFF7";
+        document.getElementById(status).innerHTML = "";
+    } else {
+        document.getElementById(id).style.background = "#FFF3F3";
+        document.getElementById(status).innerHTML = "El campo no contiene una dirección de email válida";
+    }
+}
+
+    </script>
   </body>
 </html>

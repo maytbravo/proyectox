@@ -76,19 +76,5 @@ function comprobarEmail() {
     }
 }
 
-function comprobarEmail() {
-    let id = 'mailx';
-    let status = 'emailStatus'
-    let value = document.getElementById(id).value;
-    var regex = new RegExp("^[a-zA-Z0-9_.-]+@[a-zA-Z]+[.]{1}[a-zA-Z]+$");
-    if (regex.test(value)) {
-        document.getElementById(id).style.border = "1px solid green";
-        document.getElementById(status).innerHTML = "";
-    } else {
-        document.getElementById(id).style.border = "1px solid red";
-        document.getElementById(status).innerHTML = "El campo no contiene una dirección de email válida";
-    }
-}
-
 
 

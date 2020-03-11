@@ -20,29 +20,92 @@
             <form action="/nosotros" method="POST">
             <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input class="form-control" id="nombre" type="text" placeholder="Marcelo">
+                <input class="form-control" id="namx" type="text" placeholder="Marcelo">
+                <span id="namStatus" class="mediatext"></span>
             </div>
             <div class="form-group">
                 <label for="apellido">Apellido</label>
-                <input class="form-control" id="apellido" type="text" placeholder="Cono">
+                <input class="form-control" id="surx" type="text" placeholder="Cono">
+                <span id="surStatus" class="mediatext"></span>
             </div>
             <div class="form-group">
                 <label for="mail">Mail</label>
-                <input class="form-control" id="mail" type="email" placeholder="ejemplo@gmail.com">
+                <input class="form-control" id="mailx" type="email" placeholder="ejemplo@gmail.com">
+                <span id="mailStatus" class="mediatext"></span>
             </div>
             <div class="form-group">
                 <label for="comentario">Comentario</label>
-                <textarea class="form-control" cols="3" rows="3" placeholder="Déjanos tu mensaje"></textarea>
+                <textarea class="form-control" cols="3" rows="3" id="textx" placeholder="Déjanos tu mensaje"></textarea>
+                <span id="textStatus" class="mediatext"></span>
             </div>
-            <button type="submit" class="btn btn-color1">Enviar</button>
+            <button type="submit" class="btn btn-color1" id="enviar">Enviar</button>
 
-            {{#if status}}
-                <h5 class="text-success text-center">{{message}}</h5>
-                {{else}}
-                <h5 class="text-danger text-center">{{message}}</h5>
-                {{/if}}
             </form>
         </div>
     </div>
 </div>
 </div>
+<script>
+    addEventListener('load',f1);
+
+    function f1 () {
+        document.getElementById('namx').focus();
+        document.getElementById('enviar').addEventListener('click',comprobarNamx);
+        document.getElementById('enviar').addEventListener('click',comprobarSurx);
+        document.getElementById('enviar').addEventListener('click',comprobarEmail);
+        document.getElementById('enviar').addEventListener('click',comprobarTexto);
+    }
+
+    function comprobarNamx () {
+        let id = 'namx';
+        let status = 'namStatus'
+        let value = document.getElementById(id).value;
+        if(value.length >= 3) {
+            document.getElementById(id).style.background = "#F3FFF7";
+            document.getElementById(status).innerHTML = "";
+        } else {
+            document.getElementById(id).style.background = "#FFF3F3";
+            document.getElementById(status).innerHTML = "El campo es demasiado corto";
+        }
+    }
+
+    function comprobarSurx () {
+        let id = 'surx';
+        let status = 'surStatus';
+        let value = document.getElementById(id).value;
+        if(value.length >= 3) {
+            document.getElementById(id).style.background = "#F3FFF7";
+            document.getElementById(status).innerHTML = "";
+        } else {
+            document.getElementById(id).style.background = "#FFF3F3";
+            document.getElementById(status).innerHTML = "El campo es demasiado corto";
+        }
+    }
+
+    function comprobarEmail() {
+    let id = 'mailx';
+    let status = 'mailStatus';
+    let value = document.getElementById(id).value;
+    var regex = new RegExp("^[a-zA-Z0-9_.-]+@[a-zA-Z]+[.]{1}[a-zA-Z]+$");
+    if (regex.test(value)) {
+        document.getElementById(id).style.background = "#F3FFF7";
+        document.getElementById(status).innerHTML = "";
+    } else {
+        document.getElementById(id).style.background = "#FFF3F3";
+        document.getElementById(status).innerHTML = "El campo no contiene una dirección de email válida";
+        }
+    }
+
+    function comprobarTexto () {
+        let id = 'textx';
+        let status = 'textStatus';
+        let id = document.getElementById(id).value;
+        if(value.length == 0) {
+            document.getElementById(id).style.background = "#F3FFF7";
+            document.getElementById(status).innerHTML = "";
+        } else {
+            document.getElementById(id).style.background = "#FFF3F3";
+            document.getElementById(status).innerHTML = "El campo está vacío";
+        }
+    }
+</script>
