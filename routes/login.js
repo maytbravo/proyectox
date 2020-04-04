@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const usuariosmodel = require('./../modules/usuariosmodel');
-const md5 = require('md5')
 
 
 router.get('/',async(req,res,next)=> {

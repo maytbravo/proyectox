@@ -30,10 +30,19 @@
                   <span class="linktext p-2 pr-4 pl-4">Tienda</span>
               </a>
 
-              {{#if session.admin}}
+              {{#if session}}
               <a href="/logout" id="logout">
                   <span class="linktext p-2 pr-4 pl-4">Logout</span>
               </a>
+              {{#if session.admin}}
+              <a href="/admin" id="admin">
+                  <span class="linktext p-2 pr-4 pl-4">Admin</span>
+              </a>
+              {{else}}
+              <a href="/login" id="login">
+                  <span class="linktext p-2 pr-4 pl-4">Login</span>
+              </a>
+              {{/if}}
               {{else}}
               <a href="/login" id="login">
                   <span class="linktext p-2 pr-4 pl-4">Login</span>
@@ -42,16 +51,19 @@
               <a href="/registro" id="registro">
                   <span class="linktext p-2 pr-4 pl-4">Registro</span>
               </a>
-
-              <a href="/admin" id="admin">
-                  <span class="linktext p-2 pr-4 pl-4">Admin</span>
-              </a>
             </div>
           
           <div class="col-xl-4 col-md-4 col-sm-12 d-flex">
-            <a href="/registro" class="linkicon"><i class="fas fa-ghost p-2 pr-3" id="fantasma"></i></a>
-            <a href="/admin" class="linkicon"><i class="fas fa-user-secret p-2 pr-3" id="adminicon"></i></a>
+            {{#if session}}
             <a href="/" class="linkicon"><i class="fas fa-user p-2 pr-3" id="user"></i></a>
+            {{#if session.admin}}
+            <a href="/admin" class="linkicon"><i class="fas fa-user-secret p-2 pr-3" id="adminicon"></i></a>
+            {{else}}
+            <a href="/registro" class="linkicon"><i class="fas fa-ghost p-2 pr-3" id="fantasma"></i></a>
+            {{/if}}
+            {{else}}
+            <a href="/registro" class="linkicon"><i class="fas fa-ghost p-2 pr-3" id="fantasma"></i></a>
+            {{/if}}
             <a href="/carrito" class="linkicon"><i class="fas fa-shopping-cart p-2 pr-3" id="carrito"></i></a>
           </div>       
       </div>
@@ -59,10 +71,5 @@
 
     </header>
     {{{body}}}
-
-    <script>
-
-
-    </script>
     </body>
 </html>
