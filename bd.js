@@ -9,6 +9,12 @@ const pool = mysql.createConnection ({
     database: 'proyectox'
 });
 
-pool.query = util.promisify(pool.query);
+// pool : referencia de la conexion a localhost con user root, password  : '', y base de datos noticias
 
-module.export = pool;
+// 
+// pool.query("select * from noticias") : INSERT, UPDATE, DELETE, SELECT
+
+pool.query = util.promisify(pool.query);
+console.log("Conexion a la base de datos realizada");
+
+module.exports = pool;

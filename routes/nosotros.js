@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const contactmodel = require('./../modules/contactmodel');
 
 router.get('/',(req,res,next)=> {
     res.render('nosotros');

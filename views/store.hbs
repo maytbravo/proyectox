@@ -1,55 +1,59 @@
 <div class="store bg-white">
     <div class="container mt-2">
+        <nav class="search-bar">
+            <form class="form-group p-3 pt-5">
+                <span class="blacktext mb-3">Buscador</span>
+                <input class="form-control search-form mt-3" type="search" placeholder="Search" aria-label="Search">
+                <span class="mediatext">{{message}}</span>
+            </form>
+          </nav>
         <div class="row bg-white" style="height: 900px;">
             <div class="col-2 m-top mt-5">
-                <h6 class="border-bottom p-3 blacktext  text-left">Filtros</h6>
-                <span class="p-3">Remeras</span>
+                <h6 class="border-bottom p-3 blacktext text-left">Categorías</h6>
+                <a href="/store/remeras">
+                <span class="m-3 linkicon">Remeras</span>
+                </a>
                 <br>
-                <span class="p-3">Buzos</span>
+                <a href="/store/buzos">
+                <span class="m-3 linkicon">Buzos</span>
+                </a>
                 <br>
-                <span class="p-3">Pantalones</span>
+                <a href="/store/pantalones">
+                <span class="m-3 linkicon">Pantalones</span>
+                </a>
                 <br>
-                <span class="p-3">Vestidos</span>
+                <a href="/store/vestidos">
+                <span class="m-3 linkicon">Vestidos</span>
+                </a>
                 <br>
-                <span class="p-3">Ropa Interior</span>
+                <a href="/store/ropainterior">
+                <span class="m-3 linkicon">Ropa Interior</span>
+                </a>
                 <br>
-                <span class="p-3">Accesorios</span>
+                <a href="/store/accesorios">
+                <span class="m-3 linkicon">Accesorios</span>
+                </a>
                 <br>
-                <span class="p-3">Abrigos</span>
+                <a href="/store/abrigos">
+                <span class="m-3 linkicon">Abrigos</span>
+                </a>
                 <br>
-                <span class="p-3">Shoes</span>
+                <a href="/store/shoes">
+                <span class="m-3 linkicon">Shoes</span>
+                </a>
             </div>
             <div class="col-8 border-left m-auto">
                 <div class="row">
+                    {{#each articulos}}
                     <div class="col-4 mr-5 ml-5 mt-3 mb-3">
-                        <h5 class="blacktext">Titulo</h5>
+                        <h5 class="blacktext">{{nombre}}</h5>
                         <img src="/images/hoodies/panda-hoodie.jpg" class="mb-2 mt-2"style="height:300px;width:300px">
-                        <span class="blacktext">Precio $</span>
+                        <span class="blacktext">{{precio}} $</span>
                         <br>
-                        <small> Descripcion</small>
+                        <small> {{categoria}}</small>
+                        <small> {{descripcion}}</small>
                     </div>
-                    <div class="col-4 ml-5 mr-5 mt-3 mb-3">
-                        <h5 class="blacktext">Titulo</h5>
-                        <img src="/images/hoodies/panda-hoodie.jpg" class="mb-2 mt-2"style="height:300px;width:300px">
-                        <span class="blacktext">Precio $</span>
-                        <br>
-                        <small> Descripcion</small>
-                    </div>
-                    <div class="col-4 ml-5 mr-5 mt-3 mb-3">
-                        <h5 class="blacktext">Titulo</h5>
-                        <img src="/images/hoodies/panda-hoodie.jpg" class="mb-2 mt-2"style="height:300px;width:300px">
-                        <span class="blacktext">Precio $</span>
-                        <br>
-                        <small> Descripcion</small>
-                    </div>
-                    <div class="col-4 ml-5 mr-5 mt-3 mb-3">
-                        <h5 class="blacktext">Titulo</h5>
-                        <img src="/images/hoodies/panda-hoodie.jpg" class="mb-2 mt-2"style="height:300px;width:300px">
-                        <span class="blacktext">Precio $</span>
-                        <br>
-                        <small> Descripcion</small>
-                    </div>
-                    
+                    {{/each}}
                 </div>
             </div>
         </div>

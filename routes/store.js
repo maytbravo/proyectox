@@ -1,12 +1,19 @@
 var express = require('express');
 var router = express.Router();
+//var articulosmodel = require('./../modules/articulosmodel');
 
-router.get('/',(req,res,next)=> {
-    res.render('store');
+const objetoArticulo = {
+    nombre : "Buzo panda",
+    // imagen : ''
+    imagen : "",
+    precio : 600,
+    categoria : "Buzos",
+    descripcion : "Buzo color blanco y negro con detalles de panda."
+}
+
+router.get ('/',(req,res,next)=> {
+    //console.log(req.params);
+    res.render('store',{articulos : objetoArticulo});
 });
 
-router.get ('/:id',(req,res,next)=> {
-    console.log(req.params);
-    res.render('id',{id : req.params.id});
-});
 module.exports = router;

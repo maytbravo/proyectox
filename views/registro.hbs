@@ -1,0 +1,184 @@
+<div class="registro bg-white">
+    <div class="container mt-2">
+         <div class="row" style="height: auto">
+            <div class="col-7 m-auto">
+                <h6 class="blacktext pt-3">{{message}}</h6>
+                <form action="/registro" method="POST">
+                    <h5 class="pinktext mb-4 mt-5">Registro</h5>
+                    <div class="form-group">
+                    <label for="namex">Nombre</label>
+                    <input type="text" class="form-control" id="namex" name="name">
+                    <span class="mediatext" id="namStatus"></span>
+                    </div>
+            
+                    <div class="form-group">
+                    <label for="surx">Apellido</label>
+                    <input type="text" class="form-control" id="surx" name="surname">
+                    <span class="mediatext" id="surStatus"></span>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="gender">Género</label>
+                    <select name="gender" class="form-control" id="gender" name="gender">
+                        <option id="genderx" selected disabled>Seleccione una de las opciones</option>
+                        <option>Mujer</option>
+                        <option>Hombre</option>
+                        <option>Mujer transgénero</option>
+                        <option>Hombre transgénero</option>
+                        <option>No binario</option>
+                        <option>Otro</option>
+                    </select>
+                    <span class="mediatext" id="genderStatus"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                    <label for="telx">Telefono</label>
+                    <input type="text" class="form-control" id="telx" name="telefono">
+                    <span class="mediatext" id="telStatus"></span>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="userx">Usuario</label>
+                    <input type="text" class="form-control" id="userx" name="usuario">
+                    <span class="mediatext" id="userStatus"></span>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="emailx">Email</label>
+                    <input type="email" class="form-control" id="mailx" name="email">
+                    <span class="mediatext" id="mailStatus"></span>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="passx">Contraseña</label>
+                    <input type="password" class="form-control" id="passx" name="password">
+                    <span class="mediatext" id="passStatus"></span>
+                    </div>
+                
+                <button type="reset" id="limpiar" class="btn btn-color1 btn-block mt-4">Limpiar datos</button>
+                <button type="submit" id="registrar" class="btn btn-color btn-block mb-5">Registrarse</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+addEventListener('load',f1);
+
+function f1() {
+    document.getElementById('namex').addEventListener('blur', comprobarName);
+    document.getElementById('surx').addEventListener('blur', comprobarSur);
+    document.getElementById('telx').addEventListener('blur', comprobarTel);
+    document.getElementById('userx').addEventListener('blur', comprobarUser);
+    document.getElementById('mailx').addEventListener('blur', comprobarEmail);
+    document.getElementById('passx').addEventListener('blur', comprobarPass);
+    document.getElementById('genx').addEventListener('blur', comprobarGen);
+    document.getElementById('viewpass').addEventListener('click', viewPass);
+    showPass = false;
+}
+function viewPass() {
+    if (showPass) {
+        showPass = false;
+        document.getElementById('passx').type = "password";
+        document.getElementById('viewpass').innerHTML = "Mostrar contraseña";
+    } else {
+        showPass = true;
+        document.getElementById('passx').type = "text";
+        document.getElementById('viewpass').innerHTML = "Ocultar contraseña";
+    }
+}
+function comprobarUser() {
+    let id = 'userx';
+    let status = 'userStatus'
+    let value = document.getElementById(id).value;
+    
+    if (value.length >= 3) {
+        document.getElementById(id).style.background = "#F3FFF7";
+        document.getElementById(status).innerHTML = "";
+    } else {
+        document.getElementById(id).style.background = "#FFF3F3";
+        document.getElementById(status).innerHTML = "El campo es demasiado corto";
+    }
+}
+function comprobarName() {
+    let id = 'namex';
+    let status = 'namStatus'
+    let value = document.getElementById(id).value;
+    if (value.length >= 3) {
+        document.getElementById(id).style.background = "#F3FFF7";
+        document.getElementById(status).innerHTML = "";
+    } else {
+        document.getElementById(id).style.background = "#FFF3F3";
+        document.getElementById(status).innerHTML = "El campo es demasiado corto";
+    }
+}
+
+function comprobarSur() {
+    let id = 'surx';
+    let status = 'surStatus'
+    let value = document.getElementById(id).value;
+    if (value.length >= 3) {
+        document.getElementById(id).style.background = "#F3FFF7";
+        document.getElementById(status).innerHTML = "";
+    } else {
+        document.getElementById(id).style.background = "#FFF3F3";
+        document.getElementById(status).innerHTML = "El campo es demasiado corto";
+    }
+}
+
+function comprobarTel() {
+    let id = 'telx';
+    let status = 'telStatus'
+    let value = document.getElementById(id).value;
+    var regex = new RegExp("^[0-9]*$");
+    if (regex.test(value) && value.length >= 8) {
+        document.getElementById(id).style.background = "#F3FFF7";
+        document.getElementById(status).innerHTML = "";
+    } else {
+        document.getElementById(id).style.background = "#FFF3F3";
+        document.getElementById(status).innerHTML = "El campo no contiene un teléfono válido";
+    }
+}
+
+function comprobarEmail() {
+    let id = 'mailx';
+    let status = 'mailStatus';
+    let value = document.getElementById(id).value;
+    var regex = new RegExp("^[a-zA-Z0-9_.-]+@[a-zA-Z]+[.]{1}[a-zA-Z]+$");
+    if (regex.test(value)) {
+        document.getElementById(id).style.background = "#F3FFF7";
+        document.getElementById(status).innerHTML = "";
+    } else {
+        document.getElementById(id).style.background = "#FFF3F3";
+        document.getElementById(status).innerHTML = "El campo no contiene una dirección de email válida";
+    }
+}
+
+function comprobarPass() {
+    let id = 'passx';
+    let status = 'passStatus'
+    let value = document.getElementById(id).value;
+    var regex = new RegExp("^[a-zA-Z0-9]*$");
+    if (regex.test(value) && value.length >= 8) {
+        document.getElementById(id).style.background = "#F3FFF7";
+        document.getElementById(status).innerHTML = "";
+    } else {
+        document.getElementById(id).style.background = "#FFF3F3";
+        document.getElementById(status).innerHTML = "La contraseña debe contener al menos 8 carácteres y minúsculas, mayúsculas o números";
+    }
+}
+
+function comprobarGen () {
+    let id = 'gender';
+    let status = 'genderStatus'
+    let value = document.getElementById(id).value;
+    if (value == document.getElementById(genderx)) {
+        document.getElementById(id).style.background = "#FFF3F3";
+        document.getElementById(status).innerHTML = "Debe elegir una de las opciones";
+    } else {
+        document.getElementById(id).style.background = "#F3FFF7";
+        document.getElementById(status).innerHTML = "";
+    }
+}
+</script>

@@ -1,0 +1,70 @@
+<div class="files bg-white">
+    <div class="container mt-2">
+        <div class="row" style="height: auto">
+            <div class="col-6 m-auto">
+                <form action="/admin" method="POST" enctype="multipart/form-data">
+                    <h5 class="blacktext mt-5 mb-4">Subida de articulos</h5>
+                    <div class="form-group">
+                        <label for="nombre">Nombre del articulo</label>
+                        <input type="text" class="form-control mediatext" name="nombre" id="nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="imagen">Imágen del articulo</label>
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" name="imagen">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoria">Categoria</label>
+                        <select name="categoria">
+                            <option selected disabled>Seleccione una categoria</option>
+                            
+                            {{#each array_categorias}}
+
+                            <option value="{{id}}">{{categorias}}</option>
+
+                        {{/each}}
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-color1 btn-block mb-5">Cargar articulo</button>
+                    <span>{{message}}</span>
+                </form>
+            </div>
+            <div class="col-6 m-auto">
+            <h5 class="text-center">Edición de articulos</h5>
+            <form action="/admin" method="POST">
+            {{!-- <input type="text" value="{{idURL}}"> --}}
+            {{#each articulo_array}}
+            <input type="hidden" value="{{id_a}}" name="id_a">
+            <small class="text-primary">De la categoria : {{categoria}}</small>
+
+                <div class="form-group">
+                    <label for="nombre">Nombre del articulo</label>
+                    <input type="text" class="form-control" 
+                    value="{{nombre}}" name="nombre" id="nombre">
+
+                </div>
+
+                <div class="form-group">
+                    <label class="text-info">categoria : {{categoria}}</label>
+                    {{!-- 
+                    tarea : poder elegir nuevamente un autor 
+                    --}}
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control"  name="descripcion">{{descripcion}}</textarea>
+                </div>
+                {{!-- mostrar imagen --}}
+                <div class="form-group">
+                    <input type="file" name="imagen">
+                </div>
+            {{/each}}
+                <button type="submit" class="btn btn-color btn-block">Editar</button>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
