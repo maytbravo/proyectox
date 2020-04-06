@@ -7,7 +7,7 @@
                 <span class="mediatext">{{message}}</span>
             </form>
           </nav>
-        <div class="row bg-white" style="height: 900px;">
+        <div class="row bg-white" style="height: auto;">
             <div class="col-2 m-top mt-5">
                 <h6 class="border-bottom p-3 blacktext text-left">Categorías</h6>
                 <a href="/store/remeras">
@@ -45,13 +45,18 @@
             <div class="col-8 border-left m-auto">
                 <div class="row">
                     {{#each articulos}}
-                    <div class="col-4 mr-5 ml-5 mt-3 mb-3">
-                        <h5 class="blacktext">{{nombre}}</h5>
-                        <img src="/images/hoodies/panda-hoodie.jpg" class="mb-2 mt-2"style="height:300px;width:300px">
-                        <span class="blacktext">{{precio}} $</span>
-                        <br>
-                        <small> {{categoria}}</small>
-                        <small> {{descripcion}}</small>
+                    <div class="col-4 mr-4 ml-4 mt-auto mb-auto">
+                        <div class="card" style="width: 18rem;">
+                            <img src="/images/{{imagen}}" class="card-img-top" style="size:10rem;">
+                            <div class="card-body">
+                                <h5 class="card-title blacktext">{{nombre}}</h5>
+                                <span class="blacktext">${{precio}}</span>
+                                <br>
+                                <small class="d-none"> {{categoria}}</small>
+                                <small class="card-text text-info"> {{descripcion}}</small>
+                                <a href="/store/{{id_a}}" class="btn btn-color1 btn-block">Ver más</a>
+                            </div>
+                        </div>
                     </div>
                     {{/each}}
                 </div>

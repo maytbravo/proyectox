@@ -12,13 +12,6 @@ async function getPersonaByUserAndPassword(u,p) {
 }
 
 async function createPersona(objeto) {
-    // {
-        // fecha_nacimiento : ''
-        // nombre : 'x',
-        // mail : 'asd@gmail.com',
-        // telefono : '1234',
-        // password : '1234',
-    //}
     try {
         // insert into usuario (nombre,mail,telefono,password,fecha_nacimiento) values ('franco','dileo.francoj@gmail.com','11111111','1234','1994-03-29');
         // let query = "insert into usuario (nombre,mail,telefono,password,fecha_nacimiento) values (?,?,?,?,?)";
@@ -34,8 +27,8 @@ async function createPersona(objeto) {
 }
 async function authUser(usuario,password) {
     try {
-        console.log("El usuario que llega al mode : ", usuario,  " el password que llega al model : ",password)
-        // select * from usuario where mail = 'dileo.francoj@gmail.com' and password = '1234'
+        console.log("El usuario que llega al model : ", usuario,  " el password que llega al model : ",password)
+        // select * from usuario where mail = 'ej@gmail.com' and password = '1234'
         let query = "select * from persona where usuario = ? and password = ?";
         // [{}]
         console.log(query);
@@ -46,14 +39,5 @@ async function authUser(usuario,password) {
         console.log(error);
     }
 }
-//async function insertUserRegistration(i,n,s,t,g,e,u,p) {
-//    try {
-//        let name = "insert into persona (id_usuario, name, surname, telefono, gender, email, usuario, password) values [?,?,?,?,?,?,?,?]";
-//        const data = await pool.createQuery(createQuery,[i,n,s,t,g,e,u,p]);
-//        return data;
-//    } catch (error) {
-//        throw error;
-//    }
-//}
 
 module.exports = {getPersonaByUserAndPassword,createPersona,authUser}

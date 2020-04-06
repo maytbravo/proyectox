@@ -1,33 +1,30 @@
 const express = require('express');
 const router = express.Router()
-const adminModel = require('../modules/adminmodel');
+const adminmodel = require('../modules/adminmodel');
 const articulosmodel = require('../modules/articulosmodel');
 const multer = require('multer');
 const uuid = require('node-uuid');
 const fs = require('fs'); // file system
 // crear un archivo .tmp dentro de la carpeta dest
-const upload = multer({dest : './uploads'});
+const files = multer ({dest : './uploads'});
 // AJAX : async javascript and xml
 // observer (angular, react, vue, etc)
 // async -> todas las funciones que realizan consultas
 // {id : }
-
-router.get('/',async(req,res,next)=> {
-    res.render('admin', {message : null});
-})
 
 router.post('/editar', async(req,res,next)=> {
     try {
 
         let objArticulo = {
             nombre : req.body.nombre,
-            descripcion : req.body.descripcion,
-            categorias : req.body.categoria,
+            imagen : req.body.imagen,
             precio : req.body.precio,
-            imagen : req.body.imagen
+            descripcion : req.body.descripcion,
+            id_c : req.body.categoria
         }
         let id_a = req.body.id_a;
-        let respuesta = await articulosmodel.updateArticulo(objArticulo,id_a)
+        let respuesta = await articulosmodel.updateArticulo(objArticulo,id_a);
+        console.log(respuesta);
         res.redirect('/admin');
     } catch(error) {
         console.log(error);
@@ -35,12 +32,12 @@ router.post('/editar', async(req,res,next)=> {
     }
 })
 
-router.get('/admin', async(req,res,next)=> {
+router.get('/editar/:id_a', async(req,res,next)=> {
     try {
-        let id = req.params.id;
+        let id = req.params.id_a;
         let articulo = await articulosmodel.getArticulo(id);
         console.log(articulo);
-        res.render('editar',{articulo_array : articulo, idURL : id});
+        res.render('editararticulo',{articulo_array : articulo, idURL : id_a});
 
     } catch(error) {
         console.log(error);
@@ -48,45 +45,42 @@ router.get('/admin', async(req,res,next)=> {
     }
 })
 
-
-router.post('/alta',upload.array('imagen',1),async(req,res,next)=> {
+router.post('/alta', files.array('imagen',3), async(req,res,next)=> {
     try {
-        var name_imagen = '';
-        if(req.files[0].mimetype == 'image/jpeg' || req.files[0].mimetype == 'image/png') {
-            if(req.files[0].size <= 1000000) {
-                // enctype ="multipart/form-data"
-                let array_mime = req.files[0].mimetype.split('/'); //image/jpeg
-                let ext = array_mime[1]; // png | jpeg
-                let nombre_aleatorio = uuid();
-                name_imagen = nombre_aleatorio + "." + ext;
-                let temporal_name = req.files[0].filename;
-
-
-                fs.createReadStream('./uploads/'+temporal_name).pipe(fs.createWriteStream('./public/images/'+name_imagen))
-
-                fs.unlink('./uploads/'+temporal_name,(err)=> {
-                    if(err) {
-                        console.log(err);
-                    } else {
-                        console.log("archivo temporal borrado")
-                    }
-                })
+        let nombre_final= null;
+        console.log(req.files);
+        if (req.files[0].mimetype == 'image/png' || req.files[0].mimetype == 'image/jpeg') {
+            
+            if (req.files[0].size <900000) {
+                let array_mimetype = req.files[0].mimetype.split('/');
+                let extension = array_mimetype[1];
+                let name_uuid = uuid();
+                nombre_final = name_uuid+"."+extension;
+                let temp_name = req.files[0].filename;
+                console.log("El nombre de la imagen temporal es : "+temp_name);
+                
+                fs.createReadStream('./uploads/'+temp_name).pipe(fs.createWriteStream('./public/images/'+nombre_final))
+                console.log("El nombre final de la imagen en el server es : " +nombre_final);
+                fs.unlink(`./uploads/`+temp_name, (err) => {
+                    err ? console.log(error) : console.log();
+                });
             } else {
-                console.log("Imagen muy grande")
+                res.render('admin', {message : 'Asegurate de que la imagen sea mas chica'});
             }
-
         } else {
-            console.log("formato incorrecto")
+            res.render('admin', {message : 'La imagen no es del formato correcto'});
         }
         let objArticulo = {
             nombre : req.body.nombre,
             // imagen : ''
-            imagen : name_imagen,
+            imagen : nombre_final,
             precio : req.body.precio,
-            categorias : req.body.categoria,
-            descripcion : req.body.descripcion
+            descripcion : req.body.descripcion,
+            id_c : req.body.categoria
         }
+        console.log(objArticulo);
         let resultado = await adminmodel.crearArticulo(objArticulo);
+        console.log(resultado);
         res.redirect('/admin');
     } catch(error) {
         console.log(error);
@@ -94,13 +88,13 @@ router.post('/alta',upload.array('imagen',1),async(req,res,next)=> {
     }
 })
 
-
 router.get('/alta',async (req,res,next)=> {
     try {
-        let categorias = await adminmodel.getCategorias();
-        res.render('altanoticia', {array_categorias : categorias});
+        let array_categorias = await adminmodel.getCategorias();
+        console.log(array_categorias);
+        res.render('altaarticulo', {categorias : array_categorias});
     } catch(error){
-        // res.render('error')
+        res.render('errorpage');
     }
 })
 
@@ -121,11 +115,8 @@ router.get('/',async (req,res,next)=> {
         res.render('admin',{articulos_array : data});
     } catch(error) {
         // mostrar una página de error
-        res.render('error');
+        res.render('errorpage');
     }
-
 })
-
-
 
 module.exports = router; 

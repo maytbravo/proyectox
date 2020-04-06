@@ -5,9 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
 
-
 // comprobar la sesion del usuario que ingresa y proteger las rutas que involucren al administrador
-
 // Middleware
 guardianAdmin = async(req,res,next)=> {
   try {

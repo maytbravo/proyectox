@@ -31,40 +31,24 @@
               </a>
 
               {{#if session}}
-              <a href="/logout" id="logout">
+                <a href="/logout">
                   <span class="linktext p-2 pr-4 pl-4">Logout</span>
-              </a>
-              {{#if session.admin}}
-              <a href="/admin" id="admin">
-                  <span class="linktext p-2 pr-4 pl-4">Admin</span>
-              </a>
+                </a>
               {{else}}
-              <a href="/login" id="login">
+              <a href="/login">
                   <span class="linktext p-2 pr-4 pl-4">Login</span>
               </a>
-              {{/if}}
-              {{else}}
-              <a href="/login" id="login">
-                  <span class="linktext p-2 pr-4 pl-4">Login</span>
-              </a>
-              {{/if}}
-              <a href="/registro" id="registro">
+              <a href="/registro">
                   <span class="linktext p-2 pr-4 pl-4">Registro</span>
               </a>
+              {{/if}}
             </div>
           
           <div class="col-xl-4 col-md-4 col-sm-12 d-flex">
             {{#if session}}
-            <a href="/" class="linkicon"><i class="fas fa-user p-2 pr-3" id="user"></i></a>
-            {{#if session.admin}}
-            <a href="/admin" class="linkicon"><i class="fas fa-user-secret p-2 pr-3" id="adminicon"></i></a>
+            <a href="/" class="linkicon"><i class="fas fa-user p-2 pr-3"></i></a>
             {{else}}
-            <a href="/registro" class="linkicon"><i class="fas fa-ghost p-2 pr-3" id="fantasma"></i></a>
             {{/if}}
-            {{else}}
-            <a href="/registro" class="linkicon"><i class="fas fa-ghost p-2 pr-3" id="fantasma"></i></a>
-            {{/if}}
-            <a href="/carrito" class="linkicon"><i class="fas fa-shopping-cart p-2 pr-3" id="carrito"></i></a>
           </div>       
       </div>
     </div>

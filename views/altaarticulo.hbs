@@ -1,38 +1,93 @@
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-7">
-            <h5 class="text-center">Nuevo articulo</h5>
-            <form action="/admin/alta" method="post" enctype="multipart/form-data">
-                {{!-- req.body.titulo --}}
-                <div class="form-group">
-                    <label for="nombre">Nombre del articulo</label>
-                    <input type="text" class="form-control" name="nombre" id="nombre">
-                </div>
-                <div class="form-group">
-                    <input type="file" name="imagen">
-                </div>
-                <div class="form-group">
-                    <label for="precio">Precio</label>
-                    <input type="text" class="form-control" name="precio" id="precio">
-                </div>
-                <div class="form-group">
-                    <label for="categoria">Seleccione categoria</label>
-                    <select class="form-control" name="categoria">
-                        <option  selected disabled>
-                            Seleccione el autor
-                        </option>
-                        {{#each array_categorias}}
+<div class="alta bg-white">
+    <div class="container mt-2">
+        <div class="row" style="height: auto">
+            <div class="col-7 m-auto">
+                <h5 class="blacktext mt-5 mb-4">Nuevo articulo</h5>
+                <form action="/admin/alta" method="post" enctype="multipart/form-data">
+                    {{!-- req.body.titulo --}}
+                    <div class="form-group">
+                        <label for="nombre">Nombre del articulo</label>
+                        <input type="text" class="form-control mediatext" name="nombre" id="nombre">
+                        <span class="mediatext" id="nombreStatus"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="file" name="imagen" class="mediatext">
+                    </div>
+                    <div class="form-group">
+                        <label for="precio">Precio</label>
+                        <input type="text" class="form-control mediatext" name="precio" id="precio">
+                        <span class="mediatext" id="precioStatus"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripcion</label>
+                        <textarea class="form-control mediatext" name="descripcion" id="descripcion"></textarea>
+                        <span class="mediatext" id="descStatus"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoria">Categoria</label>
+                        <select class="form-control mediatext" name="categoria">
+                            <option  selected disabled>
+                                Seleccione la categoria
+                            </option>
+                            {{#each categorias}}
 
-                        <option value="{{id_c}}">{{categoria}}</option>
+                            <option value="{{id_c}}">{{categorias}}</option>
 
-                        {{/each}}
-                    </select>
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" name="descripcion"></textarea>
-                </div>
-                <button type="submit" class="btn btn-color btn-block">Publicar</button>
-            </form>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-color1 btn-block mb-5" id="publicar">Publicar</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    addEventListener('load',f1);
+
+    function f1 () {
+        document.getElementById('nombre').addEventListener('blur',comprobarNombre);
+        document.getElementById('descripcion').addEventListener('blur',comprobarDescripcion);
+        document.getElementById('precio').addEventListener('blur',comprobarPrecio);
+    }
+
+    function comprobarNombre () {
+        let id = nombre;
+        let status = nombreStatus;
+        let value = document.getElementById(id).value;
+        if(value.length >= 3) {
+            document.getElementById(id).style.background = "#F3FFF7";
+            document.getElementById(status).innerHTML = "";
+        } else {
+            document.getElementById(id).style.background = "#FFF3F3";
+            document.getElementById(status).innerHTML = "El nombre es demasiado corto";
+        }
+    }
+
+    function comprobarPrecio () {
+        let id = precio;
+        let status = precioStatus;
+        let value = document.getElementById(id).value;
+        if(value.length > 0) {
+            document.getElementById(id).style.background = "#F3FFF7";
+            document.getElementById(status).innerHTML = "";
+        } else {
+            document.getElementById(id).style.background = "#FFF3F3";
+            document.getElementById(status).innerHTML = "El precio es demasiado bajo";
+        }
+    }
+
+    function comprobarDescripcion () {
+        let id = descripcion;
+        let status = descStatus;
+        let value = document.getElementById(id).value;
+        if(value.length >= 5) {
+            document.getElementById(id).style.background = "#F3FFF7";
+            document.getElementById(status).innerHTML = "";
+        } else {
+            document.getElementById(id).style.background = "#FFF3F3";
+            document.getElementById(status).innerHTML = "La descripción es demasiado corta";
+        }
+    }
+</script>

@@ -13,8 +13,8 @@ async function eliminarArticuloPorId(id){
 // select * from noticia order by id_n desc
 async function getArticulosAdmin() {
     try {
-        // select * from noticia as n join autor as a on n.id_autor = a.id
-        let query = "select * from articulo join categoria on categoria.id = articulo.id_categoria order by id_a desc";
+        // select * from noticia join autor on n.id_autor = a.id
+        let query = "select * from articulo natural join categoria";
         let rows = await pool.query(query);
         // noticia + id, nombre, apellido
         console.log(rows);
