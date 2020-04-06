@@ -1,21 +1,21 @@
 <div class="files bg-white">
-    <div class="container mt-2">
-        <div class="row text-center p-5" style="height: auto">
-            <div class="col-3 m-auto">
-            <span class="blacktext">Subida de articulos</span>
+    <div class="container mt-2 mr-3">
+        <div class="row text-center pt-5" style="height: auto">
+        <div class="col-2">
+            <span class="blacktext">Subida de <br>articulos</span>
             <a href="/admin/alta">
             <br>
             <i style="font-size:5em; cursor:pointer" class="fas fa-plus yellowtext mt-3" data-toggle="tooltip" data-placement="top" title="Agregar un articulo"></i>
             </a>
-            </div>
-        <div class="col-7 m-auto">
+        </div>
+        <div class="col-7">
             <table class="table text-center">
                 <thead>
-                    
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Categoria</th>
                     <th>Precio</th>
+                    <th>Descripcion</th>
                     <th>Editar</th>
                     <th>Borrar</th>
                 </thead>
@@ -23,10 +23,11 @@
                 <tbody>
                     {{#each articulos_array}}
                     <tr>
-                        <td>{{id_a}}</td>
-                        <td>{{nombre}}</td>
-                        <td>{{categorias}}</td>
-                        <td>{{precio}}</td>
+                        <td class="mediatext">{{id_a}}</td>
+                        <td class="mediatext">{{nombre}}</td>
+                        <td class="mediatext">{{categorias}}</td>
+                        <td class="mediatext">{{precio}}</td>
+                        <td class="mediatext">{{descripcion}}</td>
                         <td>
                             <a href="/admin/editar/{{id_a}}">
                             <i class="fas fa-pencil-alt bluetext"></i>

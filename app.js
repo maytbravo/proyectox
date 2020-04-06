@@ -3,13 +3,40 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const session = require('express-session');
+var session = require('express-session');
 
-// comprobar la sesion del usuario que ingresa y proteger las rutas que involucren al administrador
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var nosotrosRouter = require('./routes/nosotros');
+var storeRouter = require('./routes/store');
+var registroRouter = require('./routes/registro');
+var loginRouter = require('./routes/login');
+var logoutRouter = require('./routes/logout');
+var adminRouter = require('./routes/admin');
+
+var app = express();
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+  secret : 'franquito:D', 
+  saveUninitialized : true,
+  resave : true,
+  cookie : {maxAge : null}
+  
+}));
 // Middleware
 guardianAdmin = async(req,res,next)=> {
   try {
-
+    
     console.log("La sesion protegida vale : "+req.session.admin);
     if(req.session.admin) {
       console.log("ingresaste como administrador")
@@ -26,34 +53,6 @@ guardianAdmin = async(req,res,next)=> {
   }
 } 
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var nosotrosRouter = require('./routes/nosotros');
-var storeRouter = require('./routes/store');
-var registroRouter = require('./routes/registro');
-var loginRouter = require('./routes/login');
-var logoutRouter = require('./routes/logout');
-var adminRouter = require('./routes/admin');
-var carritoRouter = require('./routes/carrito');
-
-var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-app.use(session({
-  secret : '1', 
-  saveUninitialized : true,
-  resave : true,
-  cookie : {maxAge : null}
-  
-}));
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -63,7 +62,6 @@ app.use('/registro', registroRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/admin', guardianAdmin, adminRouter);
-app.use('/carrito',carritoRouter);
 
 
 // catch 404 and forward to error handler

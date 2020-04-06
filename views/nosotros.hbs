@@ -14,32 +14,36 @@
             <br>
             <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q=chacabuco%20974&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>Google Maps Generator by <a href="https://www.embedgooglemap.net">embedgooglemap.net</a></div><style>.mapouter{position:relative;text-align:right;height:200px;width:300px;}.gmap_canvas {overflow:hidden;background:none!important;height:200px;width:300px;}</style></div>
         </div>
-        <div class="col-7 m-auto border-left">
-            <h5 class="blacktext">Contáctanos</h5>
+        <div class="col-7 m-auto border-left pb-4 pt-3">
+            {{#if status}}
+            <small class="blacktext">{{message}}</small>
+            {{else}}
+            <small class="blacktext">{{message}}</small>
+            {{/if}}
+            <h5 class="blacktext pt-2">Contáctanos</h5>
             <br>
             <form action="/nosotros" method="POST">
             <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input class="form-control" id="nombre" type="text" placeholder="Marcelo">
+                <input autofocus class="form-control" name="nombre"id="nombre" type="text" placeholder="Marcelo" required>
                 <span id="namStatus" class="mediatext"></span>
             </div>
             <div class="form-group">
                 <label for="apellido">Apellido</label>
-                <input class="form-control" id="apellido" type="text" placeholder="Cono">
+                <input class="form-control" name="apellido"id="apellido" type="text" placeholder="Cono">
                 <span id="surStatus" class="mediatext"></span>
             </div>
             <div class="form-group">
                 <label for="mail">Mail</label>
-                <input class="form-control" id="mail" type="email" placeholder="ejemplo@gmail.com">
+                <input class="form-control" name="mail"id="mail" type="email" placeholder="ejemplo@gmail.com">
                 <span id="mailStatus" class="mediatext"></span>
             </div>
             <div class="form-group">
                 <label for="comentario">Comentario</label>
-                <textarea class="form-control" cols="3" rows="3" id="comentario" placeholder="Déjanos tu mensaje"></textarea>
+                <textarea class="form-control" cols="3" rows="3" name="comentario"id="comentario" placeholder="Déjanos tu mensaje"></textarea>
                 <span id="textStatus" class="mediatext"></span>
             </div>
             <button type="submit" class="btn btn-color1" id="enviar">Enviar</button>
-
             </form>
         </div>
     </div>

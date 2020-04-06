@@ -11,9 +11,9 @@
   </head>
   <body>
   <header>
-  <div class="container  menu mr-3 mb-2 d-fixed m-auto">
+  <div class="container  menu mr-3 mb-2 d-fixed">
       <div class="row align-items-center" style="height:80px;">
-          <div class="col-xl-1 col-md-1 col-sm-12 mx-auto">
+          <div class="col-xl-1 col-md-1 col-sm-12  mr-auto ml-auto">
           <img src="\images\logo1.jpg" class="logo-img" style="height:70px;width:70px;">
           </div>
           <div class="col-xl-6 col-md-6 col-sm-12" style="height:auto;">
@@ -30,11 +30,11 @@
                   <span class="linktext p-2 pr-4 pl-4">Tienda</span>
               </a>
 
-              {{#if session}}
+                {{#if session}}
                 <a href="/logout">
                   <span class="linktext p-2 pr-4 pl-4">Logout</span>
                 </a>
-              {{else}}
+                {{else}}
               <a href="/login">
                   <span class="linktext p-2 pr-4 pl-4">Login</span>
               </a>
@@ -45,15 +45,15 @@
             </div>
           
           <div class="col-xl-4 col-md-4 col-sm-12 d-flex">
-            {{#if session}}
+
             <a href="/" class="linkicon"><i class="fas fa-user p-2 pr-3"></i></a>
-            {{else}}
-            {{/if}}
+
           </div>       
       </div>
     </div>
 
     </header>
     {{{body}}}
+    <script></script>
     </body>
 </html>

@@ -2,34 +2,43 @@
 <div class="container mt-2">
     <div class="row" style="height: auto;">
         <div class="col-8 m-auto">
-            <h5 class="text-center">Editar articulo</h5>
+            <h5 class="blacktext  mt-5 mb-4">Editar articulo</h5>
             <form action="/admin/editar" method="post">
-            <input type="text" value="{{idURL}}">
-            {{#each articulo_array}}
-            <input type="hidden" value="{{id_a}}" name="id_a">
-            <small class="blacktext">En la categoria : {{categoria}}</small>
-
+            <input type="hidden" value="{{idURL}}">
+            {{#each articulos_array}}
+                <div class="form-group">
+                    <label for="id">Id del articulo</label>
+                    <input type="text" class="form-control" 
+                    value="{{id_a}}" name="id_a" id="id" disabled>
+                </div>
                 <div class="form-group">
                     <label for="nombre">Nombre del articulo</label>
                     <input type="text" class="form-control" 
                     value="{{nombre}}" name="nombre" id="nombre">
-
                 </div>
-
                 <div class="form-group">
-                    <label class="text-info">Precio : {{precio}}</label>
+                    <label for="imagen">Imagen</label>
+                    <br>
+                    <input type="file" name="imagen">{{imagen}}
+                </div>
+                <div class="form-group">
+                    <label class="">Precio</label>
                     <input type="text" class="form-control" 
                     value="{{precio}}" name="precio" id="precio">
                 </div>
                 <div class="form-group">
+                    <label for="descripcion">Descripcion</label>
                     <textarea class="form-control" name="descripcion">{{descripcion}}</textarea>
                 </div>
-                
                 <div class="form-group">
-                    <input type="file" name="imagen">{{imagen}}
+                    <label for="categoria">Categoria del articulo  </label><small class="pinktext mediatext">  (Para cambiar la categoria debe reingresar el articulo y eliminar el articulo erróneo)</small>
+                    <input type="text" class="form-control" 
+                    value="{{categorias}}" name="categoria" id="categoria" disabled>
                 </div>
+                
             {{/each}}
-                <button type="submit" class="btn btn-primary btn-block">Editar</button>
+                <button type="submit" class="btn btn-color1 btn-block mt-3">Editar</button>
+                <a href="/admin" class="btn btn-block btn-color mb-5">Regresar</a>
             </form>
         </div>
     </div>

@@ -1,15 +1,4 @@
-
 const pool = require('./../bd');
-
-async function searchArticulo(obj,id) {
-    try {
-        let query = "select * from articulo where nombre = %?"
-        let rows = await pool.query(query,[obj,id]);
-        return rows;
-    } catch(error) {
-        throw error;
-    }
-}
 
 async function updateArticulo(obj,id) {
     try {
@@ -31,16 +20,14 @@ async function getArticulos() {
     } catch(error) {
         console.log(error);
     }
-
 }
-
 async function getRemeras() {
     try {
         let query = "select * from articulo natural join categoria where id_c = 1"
         let rows = await pool.query(query);
         return rows;
     } catch (error) {
-        
+        console.log(error);
     }
 }
 
@@ -48,19 +35,20 @@ async function getBuzos() {
     try {
         let query = "select * from articulo natural join categoria where id_c = 2"
         let rows = await pool.query(query);
+        console.log(rows);
         return rows;
     } catch (error) {
-        
+        console.log(error);
     }
 }
 
-async function getPantalones() {
+async function getShorts() {
     try {
         let query = "select * from articulo natural join categoria where id_c = 3"
         let rows = await pool.query(query);
         return rows;
     } catch (error) {
-        throw error;
+        console.log(error);
     }
 }
 
@@ -70,7 +58,7 @@ async function getVestidos() {
         let rows = await pool.query(query);
         return rows;
     } catch (error) {
-        throw error;
+        console.log(error);
     }
 }
 
@@ -80,7 +68,7 @@ async function getInterior() {
         let rows = await pool.query(query);
         return rows;
     } catch (error) {
-        throw error;
+        console.log(error);
     }
 }
 
@@ -90,7 +78,7 @@ async function getAccesorios() {
         let rows = await pool.query(query);
         return rows;
     } catch (error) {
-        throw error;
+        console.log(error);
     }
 }
 
@@ -100,7 +88,7 @@ async function getAbrigos() {
         let rows = await pool.query(query);
         return rows;
     } catch (error) {
-        throw error;
+        console.log(error);
     }
 }
 
@@ -110,13 +98,11 @@ async function getShoes() {
         let rows = await pool.query(query);
         return rows;
     } catch (error) {
-        throw error;
+        console.log(error);
     }
 }
 
-// traigo una noticia puntual : 3
 async function getArticulo(id) {
-    // solo las funciones async tienen bloque try ´catch
     try {
         let query = "select * from articulo natural join categoria where id_a = ?";
         let rows = await pool.query(query,[id]);
@@ -126,4 +112,4 @@ async function getArticulo(id) {
     }
 }
 
-module.exports = {getArticulos, getArticulo,updateArticulo,getRemeras,getBuzos,getPantalones,getVestidos,getShoes,getAbrigos,getInterior,getAccesorios}
+module.exports = {getArticulos, getArticulo,updateArticulo,getRemeras,getBuzos,getShorts,getVestidos,getShoes,getAbrigos,getInterior,getAccesorios}

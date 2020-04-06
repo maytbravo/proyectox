@@ -4,14 +4,13 @@ const usuariosmodel = require('./../modules/usuariosmodel');
 
 // 1. router.get() : muestro la vista de registro
 // 2. router.post()
-const md5 = require('md5'); // 32 caracteres | no es reversible 
+const md5 = require('md5'); // 32 caracteres | no es reversible
 
 router.get('/', (req,res,next)=> {
     res.render('registro');
 })
 
 router.post('/', async (req,res,next)=> {
-    console.log(md5(req.body.password));
     let objPersona = {
         name : req.body.name,
         surname : req.body.surname,
@@ -22,6 +21,7 @@ router.post('/', async (req,res,next)=> {
         password : md5(req.body.password),
     }
     let result = await usuariosmodel.createPersona(objPersona);
+    console.log(result);
     if(result){
         res.render('registro', {status : true,message : 'Registro exitoso'});
     } else {

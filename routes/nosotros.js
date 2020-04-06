@@ -10,17 +10,16 @@ router.post('/',async(req,res,next)=> {
     let objCont = {
         nombre : req.body.nombre,
         apellido : req.body.apellido,
-        mail : req.body.mail,
-        comentario : req.body.comentario
+        email : req.body.mail,
+        contacto : req.body.comentario
     }
     let respuesta = await contactmodel.main(objCont);
+    // CANNOT SET HEADERS AFTER THEY ARE SENT
     if(respuesta) {
-
-        res.render('contacto', {status : true,message : 'Correo enviado, en breve nos contactaremos'})
+        res.render('nosotros', {status : true,message : 'Correo enviado, en breve nos contactaremos'});
     } else {
-        res.render('contacto', {status : false,message : 'No se pudo enviar el correo , intente de nuevo màs tarde'})
+        res.render('nosotros', {status : false,message : 'No se pudo enviar el correo , intente de nuevo màs tarde'});
     }
-    res.end();
 })
 
 module.exports = router;

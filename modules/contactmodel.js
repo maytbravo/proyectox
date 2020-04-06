@@ -1,11 +1,9 @@
 "use strict";
 const nodemailer = require("nodemailer");
-const bd = require('./../bd');
 
 // async..await is not allowed in global scope, must use a wrapper
 async function main(objeto) {
     try {
-
         let transporter = nodemailer.createTransport({
             // simple mail transfer protocol, pop3
           host: "smtp.gmail.com",
@@ -22,12 +20,12 @@ async function main(objeto) {
         });
         let info = await transporter.sendMail({
           from: '"Fred Foo 👻" <foo@example.com>', // sender address
-          to: 'maratbravo@gmail.com', // list of receivers
+          to: 'mayratbravo@gmail.com', // list of receivers
           subject: "CONTACTO DESDE LA WEB ✔", // Subject line
       
-          html: "El usuario : "+objeto.nombre + " "+objeto.apellido+" con correo : " +objeto.mail + " mando el siguiente mensaje :<br> "+objeto.comentario // html body
+          html: "El usuario : "+objeto.nombre + " "+objeto.apellido+" con correo : " +objeto.email + " mando el siguiente mensaje :<br> "+objeto.contacto // html body
         });
-      
+        console.log(info);      
         return info.messageId;
 
 

@@ -12,38 +12,6 @@ const files = multer ({dest : './uploads'});
 // async -> todas las funciones que realizan consultas
 // {id : }
 
-router.post('/editar', async(req,res,next)=> {
-    try {
-
-        let objArticulo = {
-            nombre : req.body.nombre,
-            imagen : req.body.imagen,
-            precio : req.body.precio,
-            descripcion : req.body.descripcion,
-            id_c : req.body.categoria
-        }
-        let id_a = req.body.id_a;
-        let respuesta = await articulosmodel.updateArticulo(objArticulo,id_a);
-        console.log(respuesta);
-        res.redirect('/admin');
-    } catch(error) {
-        console.log(error);
-        res.render('errorpage');
-    }
-})
-
-router.get('/editar/:id_a', async(req,res,next)=> {
-    try {
-        let id = req.params.id_a;
-        let articulo = await articulosmodel.getArticulo(id);
-        console.log(articulo);
-        res.render('editararticulo',{articulo_array : articulo, idURL : id_a});
-
-    } catch(error) {
-        console.log(error);
-        res.render('errorpage');
-    }
-})
 
 router.post('/alta', files.array('imagen',3), async(req,res,next)=> {
     try {
@@ -98,9 +66,42 @@ router.get('/alta',async (req,res,next)=> {
     }
 })
 
+router.post('/editar', async(req,res,next)=> {
+    try {
+
+        let objArticulo = {
+            nombre : req.body.nombre,
+            imagen : req.body.imagen,
+            precio : req.body.precio,
+            descripcion : req.body.descripcion,
+            id_c : req.body.categoria
+        }
+        let id = req.body.id_a;
+        let respuesta = await articulosmodel.updateArticulo(objArticulo,id);
+        console.log(respuesta);
+        res.redirect('/admin');
+    } catch(error) {
+        console.log(error);
+        res.render('errorpage');
+    }
+})
+
+router.get('/editar/:id', async(req,res,next)=> {
+    try {
+        let id = req.params.id;
+        let articulo = await articulosmodel.getArticulo(id);
+        console.log(articulo);
+        res.render('editararticulo',{articulos_array : articulo, idURL : id});
+
+    } catch(error) {
+        console.log(error);
+        res.render('errorpage');
+    }
+})
+
 router.get('/eliminar/:id', async(req,res,next)=> {
     try{
-        let id = req.params.id_a;
+        let id = req.params.id;
         await adminmodel.eliminarArticuloPorId(id);
         res.redirect('/admin');
     } catch(error) {
@@ -108,7 +109,6 @@ router.get('/eliminar/:id', async(req,res,next)=> {
     }
 })
 router.get('/',async (req,res,next)=> {
-
     try {
         let data = await adminmodel.getArticulosAdmin();
         console.log(data);

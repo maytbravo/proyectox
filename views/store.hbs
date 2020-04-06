@@ -1,60 +1,47 @@
 <div class="store bg-white">
     <div class="container mt-2">
-        <nav class="search-bar">
-            <form class="form-group p-3 pt-5">
-                <span class="blacktext mb-3">Buscador</span>
-                <input class="form-control search-form mt-3" type="search" placeholder="Search" aria-label="Search">
-                <span class="mediatext">{{message}}</span>
-            </form>
-          </nav>
-        <div class="row bg-white" style="height: auto;">
-            <div class="col-2 m-top mt-5">
-                <h6 class="border-bottom p-3 blacktext text-left">Categorías</h6>
+        <div class="row bg-white mb-5 " style="height: auto;">
+            <div class="pr-5 col-10 mt-5 mr-auto ml-auto">
+                <h5 class="blacktext text-left border-bottom pb-3 pl-4">Categorías </h5>
                 <a href="/store/remeras">
-                <span class="m-3 linkicon">Remeras</span>
+                <span class="pl-2 m-3 linkicon">Remeras</span>
                 </a>
-                <br>
                 <a href="/store/buzos">
                 <span class="m-3 linkicon">Buzos</span>
                 </a>
-                <br>
-                <a href="/store/pantalones">
-                <span class="m-3 linkicon">Pantalones</span>
+                <a href="/store/shorts">
+                <span class="m-3 linkicon">Shorts</span>
                 </a>
-                <br>
                 <a href="/store/vestidos">
                 <span class="m-3 linkicon">Vestidos</span>
                 </a>
-                <br>
                 <a href="/store/ropainterior">
                 <span class="m-3 linkicon">Ropa Interior</span>
                 </a>
-                <br>
                 <a href="/store/accesorios">
                 <span class="m-3 linkicon">Accesorios</span>
                 </a>
-                <br>
                 <a href="/store/abrigos">
                 <span class="m-3 linkicon">Abrigos</span>
                 </a>
-                <br>
                 <a href="/store/shoes">
                 <span class="m-3 linkicon">Shoes</span>
                 </a>
             </div>
-            <div class="col-8 border-left m-auto">
+            <div class="col-11 pt-3 mt-3 mb-5 pl-5 mr-auto ml-auto">
                 <div class="row">
                     {{#each articulos}}
-                    <div class="col-4 mr-4 ml-4 mt-auto mb-auto">
-                        <div class="card" style="width: 18rem;">
+                    <div class="col-2 mr-4 ml-4">
+                        <div class="card" style="width: 13rem;">
+                        <a href="/store/{{id_a}}">
                             <img src="/images/{{imagen}}" class="card-img-top" style="size:10rem;">
+                        </a>
                             <div class="card-body">
-                                <h5 class="card-title blacktext">{{nombre}}</h5>
-                                <span class="blacktext">${{precio}}</span>
+                                <span class="card-title blacktext">${{precio}}</span>
                                 <br>
-                                <small class="d-none"> {{categoria}}</small>
-                                <small class="card-text text-info"> {{descripcion}}</small>
-                                <a href="/store/{{id_a}}" class="btn btn-color1 btn-block">Ver más</a>
+                                <h5 class="blacktext">{{nombre}}</h5>
+                                <small class="d-none"> {{categorias}}</small>
+                                <small class="mediatext"> {{descripcion}}</small>
                             </div>
                         </div>
                     </div>
